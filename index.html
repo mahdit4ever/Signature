@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Signature Pad - HTML5 canvas based smooth signature drawing using variable width spline interpolation.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <link rel="stylesheet" href="assets/css/ionicons.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/signature-pad.css">
+
+
+
+  <script src="cordova.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="assets/js/jquery-2.1.4.min.js"></script>
+  <script src="assets/js/jquery.easing-1.3.min.js"></script>
+  <script src="assets/js/yacal/jquery.yacal.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/function.js"></script>
+  <script src="assets/js/content.js"></script>
+  <script src="assets/js/PushNotification.js"></script>
+
+  <link rel="stylesheet" href="assets/js/yacal/jquery.yacal.css">
+  
+
+  <audio id="audio" src="assets/sounds/Effect_Tick.ogg" >
+    
+  </audio>
+
+  <script>
+    function myDate() {
+        var a = new Date();
+        var days = new Array(7);
+        days[0] = "Sunday";
+        days[1] = "Monday";
+        days[2] = "Tuesday";
+        days[3] = "Wednesday";
+        days[4] = "Thursday";
+        days[5] = "Friday";
+        days[6] = "Saturday";
+        var r = days[a.getDay()];
+        document.getElementById("myId").innerHTML = r;
+    }
+  
+  function myDate1() {
+            var A = new Date();
+            var month = new Array();
+            month[0] = "January";
+            month[1] = "February";
+            month[2] = "March";
+            month[3] = "April";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "August";
+            month[8] = "September";
+            month[9] = "October";
+            month[10] = "November";
+            month[11] = "December";
+            var R = month[A.getMonth()];
+            document.getElementById("myId1").innerHTML = R;
+        }
+    
+    function display() { 
+    var dt= new Date();
+    var my_date= dt.getDate();
+  
+    var last_digit= my_date % 10;
+    var format;
+    if(last_digit==1) 
+    format="st";
+    else 
+    if(last_digit==2)
+    format="nd";
+    else
+    if(last_digit==3 && my_date !=13)
+    format="rd";
+    else
+    format="th";
+    my_date=my_date + format;
+    //////// End of identifying date format ///////
+    //alert(my_date); 
+    document.getElementById("myId2").innerHTML = my_date;
+    }
+  </script>
+
+  <script>
+    $(document).ready( function() {
+      var now = new Date();
+      var tommorow =  new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+   
+      var day = ("0" + tommorow.getDate()).slice(-2);
+      var month = ("0" + (tommorow.getMonth() + 1)).slice(-2);
+
+      var today = tommorow.getFullYear()+"-"+(month)+"-"+(day) ;
+
+
+     $('#datePicker').val(today);
+      
+    }); 
+  </script>
+
+  <script>
+    
+    function getPending()
+    {
+      var first = document.getElementById('first').value;
+
+
+      document.getElementById('pending').value = (total - first); 
+    }
+  </script>
+
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-39365077-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body>  
+<div id="signature">
+  <div id="signature-pad" class="signature-pad">
+    <div class="signature-pad--body">
+      <canvas></canvas>
+    </div>
+   
+      
+
+      <div class="signature-pad--actions">
+        <div>
+          <button type="button" class="button clear" data-action="clear">Clear</button>
+          <button type="button" class="button" data-action="change-color">Change color</button>
+          <button type="button" class="button" data-action="undo">Undo</button>
+
+        </div>
+        <div>
+          <button type="button" class="button save" data-action="save-png">Save as PNG</button>
+          <button type="button" class="button save" data-action="save-jpg">Save as JPG</button>
+          <button type="button" class="button save" data-action="save-svg">Save as SVG</button>
+        </div>
+      </div>
+   
+  </div>
+ </div> 
+
+
+ <script src="assets/js/signature_pad.js"></script>
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>
